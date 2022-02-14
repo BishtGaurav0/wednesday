@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import React from 'react';
+import './App.css';
+import ClassComp from './ClassComp';
+import FunactionComp from './FunactionComp';
+
+class App extends React.Component {
+   constructor(){
+     super();
+     this.state={
+          showComp:true
+     }
+   }
+   toggle=()=>{
+     this.setState({
+      showComp:!this.state.showComp
+     })
+   }
+
+  render(){
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <ClassComp/>
+     <FunactionComp/>
+     {this.state.showComp && <FunactionComp/>}
+     {this.state.showComp ? <FunactionComp/> : <span>Hiiii.......</span>}
+     <button onClick={this.toggle}>Toggle button</button>
     </div>
   );
+  }
 }
 
 export default App;
